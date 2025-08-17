@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Lo puedo dejar cuando quiera</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <h1>🌿 Lo puedo dejar cuando quiera</h1>
+  </header>
+
+  <main class="container">
+    <!-- Registro -->
+    <section class="card" id="registerSection">
+      <h2>Registro inicial</h2>
+      <form id="registerForm">
+        <label>Nombre: <input id="name" required></label>
+        <label>Edad: <input id="age" type="number" required></label>
+        <label>¿Desde qué edad fumas? <input id="startAge" type="number" required></label>
+        <label>Motivo para dejarlo:
+          <textarea id="motivo" required></textarea>
+        </label>
+        <button class="btn primary" type="submit">Guardar</button>
+      </form>
+    </section>
+
+    <!-- Bienvenida -->
+    <section class="card" id="welcomeSection" style="display:none;">
+      <h2>Hola <span id="userName"></span> 👋</h2>
+      <p><strong>Motivo:</strong> <span id="userMotivo"></span></p>
+      <div class="onboarding">
+        <h3>Cómo usar la app:</h3>
+        <ul>
+          <li>📅 Usa el calendario para registrar cuántos cigarrillos fumas cada día.</li>
+          <li>💸 Mira cuánto dinero se te va cada mes.</li>
+          <li>🧠 Revisa estrategias para controlar la ansiedad.</li>
+          <li>⚠️ Recibe alertas si superas un consumo compulsivo.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Estrategias -->
+    <section class="card" id="estrategiasSection" style="display:none;">
+      <h2>🧠 Estrategias contra la ansiedad</h2>
+      <ul>
+        <li>Respira profundo durante 1 minuto.</li>
+        <li>Mastica chicle o come fruta.</li>
+        <li>Haz una caminata corta.</li>
+        <li>Escribe lo que sientes en una nota.</li>
+      </ul>
+    </section>
+
+    <!-- Calendario -->
+    <section class="card" id="calendarSection" style="display:none;">
+      <h2>📅 Registro diario</h2>
+      <div id="calendar"></div>
+      <div id="dayFormContainer" style="display:none;">
+        <h3 id="selectedDate"></h3>
+        <form id="dayForm">
+          <label>Cigarrillos fumados:
+            <input id="cigsToday" type="number" min="0" required>
+          </label>
+          <label>Costo de hoy:
+            <input id="costToday" type="number" min="0" step="0.01" required>
+          </label>
+          <button class="btn primary" type="submit">Guardar día</button>
+        </form>
+        <p id="alertMsg" class="alert"></p>
+      </div>
+    </section>
+
+    <!-- Resumen mensual -->
+    <section class="card" id="summarySection" style="display:none;">
+      <h2>📊 Resumen mensual</h2>
+      <p>Total de cigarrillos: <span id="totalCigs">0</span></p>
+      <p>Total dinero gastado: $<span id="totalMoney">0</span></p>
+      <p id="motivationalPhrase"></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    🌱 Recuerda: <em>Lo puedo dejar cuando quiera</em>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
