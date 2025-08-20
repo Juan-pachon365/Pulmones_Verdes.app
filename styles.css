@@ -1,261 +1,156 @@
-/* ------------------------------
-   ESTILOS GENERALES
----------------------------------*/
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-  background-color: #f9f9f9;
-  color: #333;
+:root{
+  --bg:#0e1817;
+  --ink:#0f2f2c;
+  --text:#eff8f6;
+  --muted:#c9e3df;
+  --brand:#26b69a;
+  --brand-2:#7ad4c8;
+  --danger:#ff6b6b;
+  --success:#5cd49a;
+  --card:rgba(255,255,255,.06);
+  --glass-border:rgba(255,255,255,.18);
+  --shadow:0 12px 28px rgba(0,0,0,.35);
+  --radius:18px;
 }
 
-h1, h2, h3 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  margin-bottom: 0.6em;
-  color: #2c3e50;
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Poppins,system-ui,Segoe UI,Roboto,Arial;
+  color:var(--text);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, #1a423e 0%, transparent 60%),
+    linear-gradient(180deg,#0e1817 0%, #0b1211 60%, #0b0f0f 100%);
 }
 
-p, li, label {
-  font-size: 1rem;
-  color: #444;
+/* HERO */
+.hero{position:relative; height:56vh; min-height:420px; overflow:hidden}
+.hero-bg{width:100%; height:100%; object-fit:cover; filter: saturate(1.05) contrast(.95) brightness(.8)}
+.hero-overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.65))}
+.hero-content{
+  position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:16px;
+}
+.brand{
+  font-family:"Playfair Display", serif;
+  font-weight:700; letter-spacing:.5px; font-size:56px;
+  background:linear-gradient(90deg,#e6fff8, #9ff7e6 50%, #b7f5ea 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow:0 6px 28px rgba(38,182,154,.22);
+}
+.tagline{margin-top:8px; font-weight:300; font-size:18px; color:#e2fffb}
+.top-nav{margin-top:18px; display:flex; gap:8px; flex-wrap:wrap}
+.btn{border:none; border-radius:14px; padding:10px 14px; font-weight:600; cursor:pointer; transition:all .2s ease}
+.btn.ghost{background:rgba(255,255,255,.06); color:var(--text); border:1px solid rgba(255,255,255,.22)}
+.btn.primary{background:var(--brand); color:#062c25}
+.btn.success{background:var(--success); color:#092b1a}
+.btn.danger{color:#ffe9e9; border:1px solid rgba(255,255,255,.25)}
+.btn:hover{transform:translateY(-1px); box-shadow:0 8px 18px rgba(0,0,0,.25)}
+
+/* LAYOUT */
+.container{max-width:1100px; margin:-56px auto 24px; padding:0 16px; display:grid; gap:18px}
+.card{
+  display:grid; grid-template-columns: 420px 1fr; gap:16px;
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.035));
+  border:1px solid var(--glass-border); border-radius:var(--radius);
+  box-shadow:var(--shadow); overflow:hidden;
+}
+.card--photo .card-media{max-height:220px}
+.card--glass .card-media{max-height:240px}
+.card-media{position:relative}
+.card-media img{width:100%; height:100%; object-fit:cover; display:block; filter:brightness(.92)}
+.card-body{padding:18px}
+.card-body h2{margin:0 0 6px}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+
+.grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:12px}
+.grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+@media (max-width:980px){
+  .card{grid-template-columns:1fr}
 }
 
-/* ------------------------------
-   HERO (Portada)
----------------------------------*/
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* PROFILE */
+.price-box{margin-top:4px}
+.price-type{border:1px solid rgba(255,255,255,.16); border-radius:12px; padding:10px; display:flex; gap:18px; align-items:center}
+.radio{display:flex; align-items:center; gap:8px}
+.hidden{display:none !important}
+label{display:flex; flex-direction:column; gap:6px; font-size:14px}
+input{
+  background:#0f1918; color:var(--text); border:1px solid rgba(255,255,255,.16);
+  border-radius:12px; padding:10px 12px; outline:none;
+}
+input:focus{border-color:var(--brand)}
+.actions{display:flex; gap:10px; margin-top:8px}
+
+/* MINI BULLETS */
+.mini-bullets{margin-top:12px}
+.mini-bullets ul{margin:8px 0 0; padding-left:18px; line-height:1.6}
+
+/* STATS */
+.stats{display:grid; gap:12px; margin-top:6px}
+.stat{
+  background:var(--card); border:1px solid rgba(255,255,255,.14);
+  border-radius:16px; padding:14px; text-align:center; box-shadow: var(--shadow);
+}
+.stat-kpi{display:block; font-size:28px; font-weight:700}
+.stat-label{color:var(--muted)}
+
+/* CALENDAR */
+.header-row{display:flex; align-items:center; justify-content:space-between; gap:10px}
+.month-nav{display:flex; align-items:center; gap:10px; font-weight:700}
+#monthLabel{min-width:180px; text-align:center}
+.calendar-grid{margin-top:10px}
+.calendar-head{opacity:.8; text-align:center; padding:6px 0}
+.calendar-days{
+  display:grid; grid-template-columns:repeat(7,1fr); gap:6px;
+}
+.cell{aspect-ratio:1 / 1; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12);
+  border-radius:12px; padding:8px; display:flex; flex-direction:column; justify-content:space-between;
+  cursor:pointer; transition:transform .12s ease, border-color .12s ease;
+}
+.cell:hover{transform:translateY(-1px); border-color: var(--brand)}
+.cell .d{font-weight:700; opacity:.85}
+.cell .v{font-size:12px; color:var(--muted)}
+.cell.today{outline:2px solid var(--brand)}
+.cell.has{background:rgba(38,182,154,.12); border-color:rgba(38,182,154,.45)}
+.bad{background:rgba(255,107,107,.14); border-color:rgba(255,107,107,.45)}
+
+/* MODAL */
+.modal{border:none; border-radius:18px; padding:0; background:transparent}
+.modal::backdrop{background:rgba(0,0,0,.55); backdrop-filter: blur(4px)}
+.modal-card{
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.035));
+  border:1px solid rgba(255,255,255,.16); border-radius:18px; padding:16px; width:min(680px,92vw);
+}
+.modal-actions{display:flex; justify-content:flex-end; gap:10px; padding-top:10px}
+.alert{background:rgba(255,107,107,.15); border:1px solid rgba(255,107,107,.4); color:#ffd8d8; padding:8px 10px; border-radius:10px}
+
+/* CHIPS / FAVORITES */
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:6px}
+.chip{
+  background:#0f1918; color:var(--text); border:1px solid rgba(255,255,255,.12);
+  border-radius:999px; padding:8px 12px; cursor:pointer; transition:all .15s ease;
+}
+.chip:hover{border-color:var(--brand)}
+.favorites{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+.favorites .chip{background:var(--brand-2); color:#082421; border:none}
+
+/* SUMMARY */
+.summary-box{
+  background:var(--card); border:1px solid rgba(255,255,255,.14);
+  border-radius:16px; padding:14px; text-align:center; box-shadow: var(--shadow);
+}
+.summary-kpi{display:block; font-size:26px; font-weight:700}
+.summary-label{color:var(--muted)}
+.what-if{margin-top:14px}
+.whatif-list{display:grid; gap:8px; padding-left:18px}
+.quote{
+  margin-top:14px; padding:12px; border-radius:14px;
+  background:#0f1918; border:1px solid rgba(255,255,255,.12); font-style:italic;
 }
 
-.hero-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-}
-
-.hero-content {
-  z-index: 2;
-  color: white;
-  padding: 20px;
-  text-shadow: 0px 3px 6px rgba(0,0,0,0.5);
-}
-
-.slogan {
-  font-size: 2.5rem;
-}
-
-.subtitle {
-  font-size: 1.2rem;
-  margin-top: 0.5em;
-}
-
-/* ------------------------------
-   SECCIONES
----------------------------------*/
-.section {
-  padding: 60px 20px;
-  max-width: 1100px;
-  margin: auto;
-}
-
-.section h2 {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 2rem;
-}
-
-/* ------------------------------
-   FORMULARIOS
----------------------------------*/
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  max-width: 600px;
-  margin: auto;
-}
-
-input, textarea, button {
-  padding: 12px;
-  font-size: 1rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-
-textarea {
-  resize: none;
-  min-height: 80px;
-}
-
-button {
-  background: #27ae60;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #219150;
-}
-
-/* ------------------------------
-   LISTAS DE INSTRUCCIONES
----------------------------------*/
-.instrucciones ul {
-  max-width: 700px;
-  margin: auto;
-  padding-left: 20px;
-}
-
-.instrucciones li {
-  margin: 10px 0;
-  font-size: 1.1rem;
-}
-
-/* ------------------------------
-   CARDS DE INFORMACIÓN
----------------------------------*/
-.card {
-  display: flex;
-  flex-wrap: wrap;
-  background: white;
-  margin: 20px auto;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  max-width: 900px;
-}
-
-.card-media {
-  flex: 1 1 300px;
-}
-
-.card-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.card-content {
-  flex: 2 1 400px;
-  padding: 20px;
-}
-
-/* ------------------------------
-   CALENDARIO Y RESUMEN
----------------------------------*/
-#calendar {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-  gap: 10px;
-  margin: 20px auto;
-  max-width: 600px;
-}
-
-#calendar div {
-  background: #ecf0f1;
-  padding: 15px;
-  text-align: center;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-#calendar div:hover {
-  background: #d0d7de;
-}
-
-.resumen {
-  background: #fff;
-  padding: 30px;
-  margin-top: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-/* ------------------------------
-   IMÁGENES RESPONSIVE
----------------------------------*/
-.responsive-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-}
-
-.cover-img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-
-/* ------------------------------
-   RESPONSIVE DESIGN
----------------------------------*/
-@media (max-width: 768px) {
-  .slogan {
-    font-size: 1.8rem;
-  }
-
-  .subtitle {
-    font-size: 1rem;
-  }
-
-  .section {
-    padding: 40px 15px;
-  }
-
-  .card {
-    flex-direction: column;
-  }
-
-  .card-content {
-    padding: 15px;
-  }
-
-  form {
-    width: 100%;
-  }
-
-  input, textarea, button {
-    font-size: 0.95rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .slogan {
-    font-size: 1.5rem;
-  }
-
-  .subtitle {
-    font-size: 0.9rem;
-  }
-
-  .section h2 {
-    font-size: 1.5rem;
-  }
-
-  .instrucciones li {
-    font-size: 1rem;
-  }
-
-  #calendar div {
-    padding: 12px;
-    font-size: 0.9rem;
-  }
-}
+/* FOOTER */
+.footer{padding:18px 12px; background:#0b1413; border-top:1px solid rgba(255,255,255,.08)}
+.footer-wrap{max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; color:var(--muted); font-size:14px}
 
