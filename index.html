@@ -1,87 +1,215 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Lo puedo dejar cuando quiera</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Respira Libre — Lo puedo dejar cuando quiera</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#1f5f5b">
 </head>
 <body>
-  <header class="header">
-    <h1>🌿 Lo puedo dejar cuando quiera</h1>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-overlay"></div>
+    <img class="hero-bg" src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1600&auto=format&fit=crop" alt="Montañas verdes y cielo limpio">
+    <div class="hero-content">
+      <h1><span class="brand">Respira Libre</span></h1>
+      <p class="tagline">“Lo puedo dejar cuando quiera”</p>
+      <nav class="top-nav">
+        <button data-goto="#perfil" class="btn ghost">Perfil</button>
+        <button data-goto="#calendario" class="btn ghost">Calendario</button>
+        <button data-goto="#estrategias" class="btn ghost">Estrategias</button>
+        <button data-goto="#resumen" class="btn ghost">Resumen</button>
+      </nav>
+    </div>
   </header>
 
   <main class="container">
-    <!-- Registro -->
-    <section class="card" id="registerSection">
-      <h2>Registro inicial</h2>
-      <form id="registerForm">
-        <label>Nombre: <input id="name" required></label>
-        <label>Edad: <input id="age" type="number" required></label>
-        <label>¿Desde qué edad fumas? <input id="startAge" type="number" required></label>
-        <label>Motivo para dejarlo:
-          <textarea id="motivo" required></textarea>
-        </label>
-        <button class="btn primary" type="submit">Guardar</button>
-      </form>
-    </section>
-
-    <!-- Bienvenida -->
-    <section class="card" id="welcomeSection" style="display:none;">
-      <h2>Hola <span id="userName"></span> 👋</h2>
-      <p><strong>Motivo:</strong> <span id="userMotivo"></span></p>
-      <div class="onboarding">
-        <h3>Cómo usar la app:</h3>
-        <ul>
-          <li>📅 Usa el calendario para registrar cuántos cigarrillos fumas cada día.</li>
-          <li>💸 Mira cuánto dinero se te va cada mes.</li>
-          <li>🧠 Revisa estrategias para controlar la ansiedad.</li>
-          <li>⚠️ Recibe alertas si superas un consumo compulsivo.</li>
-        </ul>
+    <!-- PERFIL -->
+    <section id="perfil" class="card card--glass">
+      <div class="card-media">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Bosque con luz suave">
       </div>
-    </section>
+      <div class="card-body">
+        <h2>Tu perfil</h2>
+        <p class="muted">Completa tus datos para personalizar tu progreso y los cálculos de gasto.</p>
 
-    <!-- Estrategias -->
-    <section class="card" id="estrategiasSection" style="display:none;">
-      <h2>🧠 Estrategias contra la ansiedad</h2>
-      <ul>
-        <li>Respira profundo durante 1 minuto.</li>
-        <li>Mastica chicle o come fruta.</li>
-        <li>Haz una caminata corta.</li>
-        <li>Escribe lo que sientes en una nota.</li>
-      </ul>
-    </section>
+        <form id="profileForm" class="grid-2">
+          <label>Nombre
+            <input id="name" required placeholder="Tu nombre">
+          </label>
+          <label>Edad
+            <input id="age" type="number" min="10" max="120" required>
+          </label>
+          <label>¿Desde qué edad fumas?
+            <input id="startAge" type="number" min="5" max="120" required>
+          </label>
+          <label>Motivo para dejarlo
+            <input id="why" required placeholder="Familia, salud, deporte, sueño, etc.">
+          </label>
 
-    <!-- Calendario -->
-    <section class="card" id="calendarSection" style="display:none;">
-      <h2>📅 Registro diario</h2>
-      <div id="calendar"></div>
-      <div id="dayFormContainer" style="display:none;">
-        <h3 id="selectedDate"></h3>
-        <form id="dayForm">
-          <label>Cigarrillos fumados:
-            <input id="cigsToday" type="number" min="0" required>
-          </label>
-          <label>Costo de hoy:
-            <input id="costToday" type="number" min="0" step="0.01" required>
-          </label>
-          <button class="btn primary" type="submit">Guardar día</button>
+          <div class="price-box">
+            <fieldset class="price-type">
+              <legend>Precio de cigarrillo</legend>
+              <label class="radio">
+                <input type="radio" name="priceMode" value="perCig" checked>
+                Precio por cigarrillo
+              </label>
+              <label class="radio">
+                <input type="radio" name="priceMode" value="perPack">
+                Precio por paquete
+              </label>
+            </fieldset>
+
+            <div class="grid-3 price-inputs">
+              <label id="perCigWrap">COP por cigarrillo
+                <input id="pricePerCig" type="number" min="0" step="1" placeholder="Ej: 1000">
+              </label>
+              <label id="perPackWrap" class="hidden">COP por paquete
+                <input id="pricePerPack" type="number" min="0" step="1" placeholder="Ej: 20000">
+              </label>
+              <label id="packSizeWrap" class="hidden">Cigs por paquete
+                <input id="packSize" type="number" min="1" step="1" placeholder="Ej: 20">
+              </label>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="btn primary">Guardar perfil</button>
+            <button type="button" id="resetBtn" class="btn danger ghost">Reiniciar datos</button>
+          </div>
         </form>
-        <p id="alertMsg" class="alert"></p>
+
+        <div class="mini-bullets">
+          <h3>Cómo funciona esta app</h3>
+          <ul>
+            <li>📅 <strong>Calendario:</strong> registra tus cigarrillos por día y calcula el gasto.</li>
+            <li>⚠️ <strong>Alertas:</strong> si superas 20 cig/día te recordamos tus motivos.</li>
+            <li>🌱 <strong>Estrategias:</strong> ejercicios y alternativas para manejar la ansiedad.</li>
+            <li>📊 <strong>Resumen:</strong> al final del mes verás totales y motivación de compra.</li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <!-- Resumen mensual -->
-    <section class="card" id="summarySection" style="display:none;">
-      <h2>📊 Resumen mensual</h2>
-      <p>Total de cigarrillos: <span id="totalCigs">0</span></p>
-      <p>Total dinero gastado: $<span id="totalMoney">0</span></p>
-      <p id="motivationalPhrase"></p>
+    <!-- PANEL RÁPIDO -->
+    <section class="stats grid-3">
+      <div class="stat">
+        <span class="stat-kpi" id="kpiUser">—</span>
+        <span class="stat-label">Usuario</span>
+      </div>
+      <div class="stat">
+        <span class="stat-kpi" id="kpiMonthCigs">0</span>
+        <span class="stat-label">Cigs este mes</span>
+      </div>
+      <div class="stat">
+        <span class="stat-kpi" id="kpiMonthSpend">$0</span>
+        <span class="stat-label">Gasto este mes</span>
+      </div>
+    </section>
+
+    <!-- CALENDARIO -->
+    <section id="calendario" class="card card--photo">
+      <div class="card-media">
+        <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1600&auto=format&fit=crop" alt="Camino entre árboles">
+      </div>
+      <div class="card-body">
+        <div class="header-row">
+          <h2>Calendario de consumo</h2>
+          <div class="month-nav">
+            <button class="btn ghost" id="prevMonth">◀</button>
+            <span id="monthLabel"></span>
+            <button class="btn ghost" id="nextMonth">▶</button>
+          </div>
+        </div>
+        <div class="calendar-grid">
+          <div class="calendar-head">L</div><div class="calendar-head">M</div><div class="calendar-head">M</div><div class="calendar-head">J</div><div class="calendar-head">V</div><div class="calendar-head">S</div><div class="calendar-head">D</div>
+          <div id="calendarDays" class="calendar-days"></div>
+        </div>
+        <p class="muted small">Consejo: un antojo dura <em>menos de 10 minutos</em>. Respira, cambia de ambiente y regístralo.</p>
+      </div>
+    </section>
+
+    <!-- DIALOG DÍA -->
+    <dialog id="dayDialog" class="modal">
+      <form method="dialog" id="dayForm" class="modal-card">
+        <h3 id="dayTitle">Día</h3>
+        <div class="grid-2">
+          <label>Cigarrillos fumados
+            <input id="dayCigs" type="number" min="0" step="1" required>
+          </label>
+          <label>Gasto estimado (COP)
+            <input id="dayCost" type="number" min="0" step="1" required>
+          </label>
+        </div>
+        <p id="alertText" class="alert hidden">⚠️ Consumo alto hoy. Recuerda: <span id="whyInline"></span></p>
+        <menu class="modal-actions">
+          <button value="cancel" class="btn ghost">Cancelar</button>
+          <button id="saveDayBtn" value="default" class="btn success">Guardar</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <!-- ESTRATEGIAS -->
+    <section id="estrategias" class="card card--glass">
+      <div class="card-media">
+        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1600&auto=format&fit=crop" alt="Lago tranquilo al amanecer">
+      </div>
+      <div class="card-body">
+        <h2>Estrategias para la ansiedad</h2>
+        <div class="chips" id="tips">
+          <button class="chip">Respiración 4–7–8</button>
+          <button class="chip">Agua fría</button>
+          <button class="chip">Chicle sin azúcar</button>
+          <button class="chip">Caminar 10 min</button>
+          <button class="chip">Ducha tibia</button>
+          <button class="chip">5-4-3-2-1 grounding</button>
+          <button class="chip">Llamar a alguien</button>
+          <button class="chip">Escribir 2 min</button>
+        </div>
+        <div id="favTips" class="favorites"></div>
+        <p class="muted small">Toca un tip para guardarlo como favorito. Úsalo cuando llegue el antojo.</p>
+      </div>
+    </section>
+
+    <!-- RESUMEN -->
+    <section id="resumen" class="card card--photo">
+      <div class="card-media">
+        <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=1600&auto=format&fit=crop" alt="Cima de montaña, horizonte">
+      </div>
+      <div class="card-body">
+        <h2>Resumen mensual</h2>
+        <div class="grid-3">
+          <div class="summary-box">
+            <span class="summary-kpi" id="sumCigs">0</span>
+            <span class="summary-label">Cigarrillos</span>
+          </div>
+          <div class="summary-box">
+            <span class="summary-kpi" id="sumMoney">$0</span>
+            <span class="summary-label">Gasto</span>
+          </div>
+          <div class="summary-box">
+            <span class="summary-kpi" id="sumDays">0</span>
+            <span class="summary-label">Días con registro</span>
+          </div>
+        </div>
+
+        <div class="what-if">
+          <h3>Con ese dinero podrías…</h3>
+          <ul id="whatIfList" class="whatif-list"></ul>
+        </div>
+
+        <blockquote class="quote" id="motivationQuote">“Cada minuto sin fumar es una victoria.”</blockquote>
+      </div>
     </section>
   </main>
 
   <footer class="footer">
-    🌱 Recuerda: <em>Lo puedo dejar cuando quiera</em>
+    <div class="footer-wrap">
+      <div class="footer-left">🌿 <strong>Respira Libre</strong></div>
+      <div class="footer-right">“Lo puedo dejar cuando quiera”</div>
+    </div>
   </footer>
 
   <script src="app.js"></script>
