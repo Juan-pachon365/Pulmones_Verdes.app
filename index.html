@@ -1,94 +1,217 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lo Puedo Dejar Cuando Quiera</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Respira Libre — Lo puedo dejar cuando quiera</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#1f5f5b">
 </head>
 <body>
-  <!-- Hero -->
+  <!-- HERO -->
   <header class="hero">
-    <img class="hero-bg responsive-img cover-img" src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1600&auto=format&fit=crop" alt="Montañas verdes y cielo limpio">
+    <div class="hero-overlay"></div>
+    <img class="hero-bg" src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1600&auto=format&fit=crop" alt="Montañas verdes y cielo limpio">
     <div class="hero-content">
-      <h1 class="slogan">Lo puedo dejar cuando quiera</h1>
-      <p class="subtitle">Tu compañero en el camino hacia una vida libre de humo</p>
+      <h1><span class="brand">Respira Libre</span></h1>
+      <p class="tagline">“Lo puedo dejar cuando quiera”</p>
+      <nav class="top-nav">
+        <button data-goto="#perfil" class="btn ghost">Perfil</button>
+        <button data-goto="#calendario" class="btn ghost">Calendario</button>
+        <button data-goto="#estrategias" class="btn ghost">Estrategias</button>
+        <button data-goto="#resumen" class="btn ghost">Resumen</button>
+      </nav>
     </div>
   </header>
 
-  <!-- Registro -->
-  <section class="registro section">
-    <h2>Registro Personal</h2>
-    <form id="registroForm">
-      <label>Nombre:</label>
-      <input type="text" id="nombre" required>
-
-      <label>Edad:</label>
-      <input type="number" id="edad" required>
-
-      <label>¿Desde qué edad empezaste a fumar?</label>
-      <input type="number" id="edadInicio" required>
-
-      <label>Precio por cajetilla de cigarrillos (COP):</label>
-      <input type="number" id="precioCigarrillos" required>
-
-      <label>Motivo para dejarlo:</label>
-      <textarea id="motivo" required></textarea>
-
-      <button type="submit">Guardar Registro</button>
-    </form>
-  </section>
-
-  <!-- Instrucciones -->
-  <section class="instrucciones section">
-    <h2>Cómo usar la aplicación</h2>
-    <ul>
-      <li>📌 Registra tus datos personales y tu motivo para dejar de fumar.</li>
-      <li>📅 Usa el calendario para anotar cuántos cigarrillos fumas al día.</li>
-      <li>💰 Verás cuánto dinero gastas en el mes y cómo podrías usarlo mejor.</li>
-      <li>⚡ Recibirás alertas si tu consumo es alto, junto con recordatorios de tu motivación.</li>
-    </ul>
-  </section>
-
-  <!-- Información de apoyo -->
-  <section class="informacion section">
-    <h2>Consejos y Apoyo Diario</h2>
-    <div class="card">
+  <main class="container">
+    <!-- PERFIL -->
+    <section id="perfil" class="card card--glass">
       <div class="card-media">
-        <img class="responsive-img" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Bosque con luz suave">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Bosque con luz suave">
       </div>
-      <div class="card-content">
-        <h3>Manejar la ansiedad</h3>
-        <p>Cuando sientas ganas de fumar, respira profundo, bebe agua o mastica chicle. Busca distraerte con actividades saludables.</p>
-      </div>
-    </div>
+      <div class="card-body">
+        <h2>Tu perfil</h2>
+        <p class="muted">Completa tus datos para personalizar tu progreso y los cálculos de gasto.</p>
 
-    <div class="card">
+        <form id="profileForm" class="grid-2">
+          <label>Nombre
+            <input id="name" required placeholder="Tu nombre">
+          </label>
+          <label>Edad
+            <input id="age" type="number" min="10" max="120" required>
+          </label>
+          <label>¿Desde qué edad fumas?
+            <input id="startAge" type="number" min="5" max="120" required>
+          </label>
+          <label>Motivo para dejarlo
+            <input id="why" required placeholder="Familia, salud, deporte, sueño, etc.">
+          </label>
+
+          <div class="price-box">
+            <fieldset class="price-type">
+              <legend>Precio de cigarrillo</legend>
+              <label class="radio">
+                <input type="radio" name="priceMode" value="perCig" checked>
+                Precio por cigarrillo
+              </label>
+              <label class="radio">
+                <input type="radio" name="priceMode" value="perPack">
+                Precio por paquete
+              </label>
+            </fieldset>
+
+            <div class="grid-3 price-inputs">
+              <label id="perCigWrap">COP por cigarrillo
+                <input id="pricePerCig" type="number" min="0" step="1" placeholder="Ej: 1000">
+              </label>
+              <label id="perPackWrap" class="hidden">COP por paquete
+                <input id="pricePerPack" type="number" min="0" step="1" placeholder="Ej: 20000">
+              </label>
+              <label id="packSizeWrap" class="hidden">Cigs por paquete
+                <input id="packSize" type="number" min="1" step="1" placeholder="Ej: 20">
+              </label>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="btn primary">Guardar perfil</button>
+            <button type="button" id="resetBtn" class="btn danger ghost">Reiniciar datos</button>
+          </div>
+        </form>
+
+        <div class="mini-bullets">
+          <h3>Cómo funciona esta app</h3>
+          <ul>
+            <li>📅 <strong>Calendario:</strong> registra tus cigarrillos por día y calcula el gasto.</li>
+            <li>⚠️ <strong>Alertas:</strong> si superas 20 cig/día te recordamos tus motivos.</li>
+            <li>🌱 <strong>Estrategias:</strong> ejercicios y alternativas para manejar la ansiedad.</li>
+            <li>📊 <strong>Resumen:</strong> al final del mes verás totales y motivación de compra.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANEL RÁPIDO -->
+    <section class="stats grid-3">
+      <div class="stat">
+        <span class="stat-kpi" id="kpiUser">—</span>
+        <span class="stat-label">Usuario</span>
+      </div>
+      <div class="stat">
+        <span class="stat-kpi" id="kpiMonthCigs">0</span>
+        <span class="stat-label">Cigs este mes</span>
+      </div>
+      <div class="stat">
+        <span class="stat-kpi" id="kpiMonthSpend">$0</span>
+        <span class="stat-label">Gasto este mes</span>
+      </div>
+    </section>
+
+    <!-- CALENDARIO -->
+    <section id="calendario" class="card card--photo">
       <div class="card-media">
-        <img class="responsive-img" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1200&auto=format&fit=crop" alt="Persona corriendo al amanecer">
+        <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1600&auto=format&fit=crop" alt="Camino entre árboles">
       </div>
-      <div class="card-content">
-        <h3>Actividad física</h3>
-        <p>El ejercicio reduce la ansiedad y mejora tu salud. Una caminata de 15 minutos puede ayudarte a superar un momento de deseo.</p>
+      <div class="card-body">
+        <div class="header-row">
+          <h2>Calendario de consumo</h2>
+          <div class="month-nav">
+            <button class="btn ghost" id="prevMonth">◀</button>
+            <span id="monthLabel"></span>
+            <button class="btn ghost" id="nextMonth">▶</button>
+          </div>
+        </div>
+        <div class="calendar-grid">
+          <div class="calendar-head">L</div><div class="calendar-head">M</div><div class="calendar-head">M</div><div class="calendar-head">J</div><div class="calendar-head">V</div><div class="calendar-head">S</div><div class="calendar-head">D</div>
+          <div id="calendarDays" class="calendar-days"></div>
+        </div>
+        <p class="muted small">Consejo: un antojo dura <em>menos de 10 minutos</em>. Respira, cambia de ambiente y regístralo.</p>
       </div>
+    </section>
+
+    <!-- DIALOG DÍA -->
+    <dialog id="dayDialog" class="modal">
+      <form method="dialog" id="dayForm" class="modal-card">
+        <h3 id="dayTitle">Día</h3>
+        <div class="grid-2">
+          <label>Cigarrillos fumados
+            <input id="dayCigs" type="number" min="0" step="1" required>
+          </label>
+          <label>Gasto estimado (COP)
+            <input id="dayCost" type="number" min="0" step="1" required>
+          </label>
+        </div>
+        <p id="alertText" class="alert hidden">⚠️ Consumo alto hoy. Recuerda: <span id="whyInline"></span></p>
+        <menu class="modal-actions">
+          <button value="cancel" class="btn ghost">Cancelar</button>
+          <button id="saveDayBtn" value="default" class="btn success">Guardar</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <!-- ESTRATEGIAS -->
+    <section id="estrategias" class="card card--glass">
+      <div class="card-media">
+        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1600&auto=format&fit=crop" alt="Lago tranquilo al amanecer">
+      </div>
+      <div class="card-body">
+        <h2>Estrategias para la ansiedad</h2>
+        <div class="chips" id="tips">
+          <button class="chip">Respiración 4–7–8</button>
+          <button class="chip">Agua fría</button>
+          <button class="chip">Chicle sin azúcar</button>
+          <button class="chip">Caminar 10 min</button>
+          <button class="chip">Ducha tibia</button>
+          <button class="chip">5-4-3-2-1 grounding</button>
+          <button class="chip">Llamar a alguien</button>
+          <button class="chip">Escribir 2 min</button>
+        </div>
+        <div id="favTips" class="favorites"></div>
+        <p class="muted small">Toca un tip para guardarlo como favorito. Úsalo cuando llegue el antojo.</p>
+      </div>
+    </section>
+
+    <!-- RESUMEN -->
+    <section id="resumen" class="card card--photo">
+      <div class="card-media">
+        <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=1600&auto=format&fit=crop" alt="Cima de montaña, horizonte">
+      </div>
+      <div class="card-body">
+        <h2>Resumen mensual</h2>
+        <div class="grid-3">
+          <div class="summary-box">
+            <span class="summary-kpi" id="sumCigs">0</span>
+            <span class="summary-label">Cigarrillos</span>
+          </div>
+          <div class="summary-box">
+            <span class="summary-kpi" id="sumMoney">$0</span>
+            <span class="summary-label">Gasto</span>
+          </div>
+          <div class="summary-box">
+            <span class="summary-kpi" id="sumDays">0</span>
+            <span class="summary-label">Días con registro</span>
+          </div>
+        </div>
+
+        <div class="what-if">
+          <h3>Con ese dinero podrías…</h3>
+          <ul id="whatIfList" class="whatif-list"></ul>
+        </div>
+
+        <blockquote class="quote" id="motivationQuote">“Cada minuto sin fumar es una victoria.”</blockquote>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-wrap">
+      <div class="footer-left">🌿 <strong>Respira Libre</strong></div>
+      <div class="footer-right">“Lo puedo dejar cuando quiera”</div>
     </div>
-  </section>
+  </footer>
 
-  <!-- Calendario -->
-  <section class="calendario section">
-    <h2>Calendario de Consumo</h2>
-    <p>Registra los cigarrillos fumados por día:</p>
-    <div id="calendar"></div>
-    <button id="verResumen">Ver Resumen del Mes</button>
-  </section>
-
-  <!-- Resumen -->
-  <section class="resumen section" id="resumenSection" style="display:none;">
-    <h2>Resumen Mensual</h2>
-    <p id="resumenTexto"></p>
-    <div id="fraseMotivadora"></div>
-  </section>
-
-  <script src="script.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
