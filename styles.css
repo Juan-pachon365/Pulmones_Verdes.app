@@ -1,166 +1,73 @@
-/* ------------------------------
-   ESTILOS BASE
------------------------------- */
-body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to bottom, #e8f5e9, #ffffff);
-    color: #333;
+/* 🔹 Ajustes Responsive Generales */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px; /* opcional para mantener el estilo redondeado */
+  display: block;
+  margin: 0 auto;
 }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
+.card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
-h1, h2, h3 {
-    text-align: center;
-    margin-bottom: 15px;
-    color: #2e7d32;
-}
-
-h1 { font-size: 2rem; }
-h2 { font-size: 1.5rem; }
-h3 { font-size: 1.2rem; }
-
-/* Formularios */
+/* 🔹 Formularios Responsive */
 form {
-    background: #fff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
 
 form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  gap: 6px;
 }
 
-form input, form textarea {
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, .16);
+  background: #0f1918;
+  color: var(--text);
+  font-size: 15px;
+}
+
+form textarea {
+  grid-column: 1 / -1; /* ocupa todo el ancho */
+  min-height: 100px;
+  resize: vertical;
+}
+
+form .form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+form .form-actions button {
+  flex: 1;
+  min-width: 120px;
+}
+
+/* 🔹 Responsive en pantallas chicas */
+@media (max-width: 768px) {
+  form {
+    grid-template-columns: 1fr; /* una sola columna en móvil */
+  }
+
+  form .form-actions {
+    flex-direction: column;
+  }
+
+  form .form-actions button {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-}
-
-form button {
-    background: #43a047;
-    color: #fff;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: 0.3s;
-    width: 100%;
-}
-
-form button:hover {
-    background: #2e7d32;
-}
-
-/* Tarjetas */
-.card {
-    background: #fff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-}
-
-/* Calendario */
-.calendar {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.calendar div {
-    background: #e0f2f1;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 0.9rem;
-}
-
-/* Frases motivacionales */
-.motivation {
-    font-size: 1.2rem;
-    font-style: italic;
-    text-align: center;
-    margin-top: 20px;
-    color: #1b5e20;
-}
-
-/* ------------------------------
-   IMÁGENES RESPONSIVE
------------------------------- */
-img.responsive-img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    width: 100%;
-    border-radius: 15px;
-    margin: 15px 0;
-    object-fit: cover;
-}
-
-/* ------------------------------
-   RESPONSIVE DESIGN
------------------------------- */
-@media (max-width: 992px) {
-    h1 { font-size: 1.8rem; }
-    h2 { font-size: 1.4rem; }
-    .calendar {
-        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-    }
-}
-
-@media (max-width: 600px) {
-    .container {
-        width: 95%;
-        padding: 10px;
-    }
-
-    h1 { font-size: 1.5rem; }
-    h2 { font-size: 1.2rem; }
-    h3 { font-size: 1rem; }
-
-    form, .card {
-        padding: 15px;
-    }
-
-    form input, form textarea, form button {
-        font-size: 0.9rem;
-        padding: 10px;
-    }
-
-    .calendar {
-        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-        gap: 8px;
-    }
-
-    .calendar div {
-        padding: 10px;
-        font-size: 0.8rem;
-    }
-
-    .motivation {
-        font-size: 1rem;
-        padding: 0 5px;
-    }
-
-    /* Ajuste de imágenes en celular */
-    img.responsive-img {
-        border-radius: 10px;
-        margin: 10px auto;
-    }
+  }
 }
