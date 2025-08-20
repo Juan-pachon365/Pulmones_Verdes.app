@@ -1,73 +1,261 @@
-/* 🔹 Ajustes Responsive Generales */
-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 12px; /* opcional para mantener el estilo redondeado */
-  display: block;
-  margin: 0 auto;
+/* ------------------------------
+   ESTILOS GENERALES
+---------------------------------*/
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
 }
 
-.card img {
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  margin-bottom: 0.6em;
+  color: #2c3e50;
+}
+
+p, li, label {
+  font-size: 1rem;
+  color: #444;
+}
+
+/* ------------------------------
+   HERO (Portada)
+---------------------------------*/
+.hero {
+  position: relative;
   width: 100%;
-  height: auto;
+  height: 100vh;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.hero-content {
+  z-index: 2;
+  color: white;
+  padding: 20px;
+  text-shadow: 0px 3px 6px rgba(0,0,0,0.5);
+}
+
+.slogan {
+  font-size: 2.5rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-top: 0.5em;
+}
+
+/* ------------------------------
+   SECCIONES
+---------------------------------*/
+.section {
+  padding: 60px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+/* ------------------------------
+   FORMULARIOS
+---------------------------------*/
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px;
+  margin: auto;
+}
+
+input, textarea, button {
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+textarea {
+  resize: none;
+  min-height: 80px;
+}
+
+button {
+  background: #27ae60;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #219150;
+}
+
+/* ------------------------------
+   LISTAS DE INSTRUCCIONES
+---------------------------------*/
+.instrucciones ul {
+  max-width: 700px;
+  margin: auto;
+  padding-left: 20px;
+}
+
+.instrucciones li {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+/* ------------------------------
+   CARDS DE INFORMACIÓN
+---------------------------------*/
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  background: white;
+  margin: 20px auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 900px;
+}
+
+.card-media {
+  flex: 1 1 300px;
+}
+
+.card-media img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
-/* 🔹 Formularios Responsive */
-form {
+.card-content {
+  flex: 2 1 400px;
+  padding: 20px;
+}
+
+/* ------------------------------
+   CALENDARIO Y RESUMEN
+---------------------------------*/
+#calendar {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 10px;
+  margin: 20px auto;
+  max-width: 600px;
 }
 
-form label {
-  display: flex;
-  flex-direction: column;
-  font-size: 14px;
-  gap: 6px;
+#calendar div {
+  background: #ecf0f1;
+  padding: 15px;
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-form input,
-form textarea {
-  width: 100%;
-  padding: 10px;
+#calendar div:hover {
+  background: #d0d7de;
+}
+
+.resumen {
+  background: #fff;
+  padding: 30px;
+  margin-top: 30px;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, .16);
-  background: #0f1918;
-  color: var(--text);
-  font-size: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-form textarea {
-  grid-column: 1 / -1; /* ocupa todo el ancho */
-  min-height: 100px;
-  resize: vertical;
+/* ------------------------------
+   IMÁGENES RESPONSIVE
+---------------------------------*/
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
 }
 
-form .form-actions {
-  grid-column: 1 / -1;
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 12px;
+.cover-img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
-form .form-actions button {
-  flex: 1;
-  min-width: 120px;
-}
-
-/* 🔹 Responsive en pantallas chicas */
+/* ------------------------------
+   RESPONSIVE DESIGN
+---------------------------------*/
 @media (max-width: 768px) {
-  form {
-    grid-template-columns: 1fr; /* una sola columna en móvil */
+  .slogan {
+    font-size: 1.8rem;
   }
 
-  form .form-actions {
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .section {
+    padding: 40px 15px;
+  }
+
+  .card {
     flex-direction: column;
   }
 
-  form .form-actions button {
+  .card-content {
+    padding: 15px;
+  }
+
+  form {
     width: 100%;
   }
+
+  input, textarea, button {
+    font-size: 0.95rem;
+  }
 }
+
+@media (max-width: 480px) {
+  .slogan {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .section h2 {
+    font-size: 1.5rem;
+  }
+
+  .instrucciones li {
+    font-size: 1rem;
+  }
+
+  #calendar div {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+}
+
